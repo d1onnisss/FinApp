@@ -51,7 +51,7 @@ class OnBoardingCell: UICollectionViewCell {
     lazy var skipBtn: UIButton = {
         let view = UIButton(type: .system)
         view.setTitle("Skip", for: .normal)
-        view.setTitleColor(.systemRed, for: .normal)
+        view.setTitleColor(.systemBlue, for: .normal)
         view.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         view.backgroundColor = .systemGray4
         view.layer.cornerRadius = 16
@@ -63,7 +63,7 @@ class OnBoardingCell: UICollectionViewCell {
         view.setTitle("Next", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        view.backgroundColor = .systemRed
+        view.backgroundColor = .systemBlue
         view.layer.cornerRadius = 16
         return view
     }()

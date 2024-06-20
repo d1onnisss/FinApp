@@ -48,7 +48,7 @@ class OnBoarding: UIViewController {
     }
     
     @objc private func skipBtnTapped() {
-        let vc = HomeView()
+        let vc = MainTabBarController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
