@@ -33,6 +33,13 @@ class SettingsView: UIViewController {
         view.backgroundColor = .systemBackground
         controller = SettingsController(view: self)
         setupConstraints()
+        
+        let isDarkTheme = UserDefaults.standard.bool(forKey: "darkTheme")
+        if isDarkTheme == true {
+            view.overrideUserInterfaceStyle = .dark
+        } else {
+            view.overrideUserInterfaceStyle = .light
+        }
     }
     
     private func setupConstraints() {
@@ -71,6 +78,7 @@ extension SettingsView: UITableViewDelegate {
 
 extension SettingsView: SettingsCellDelegate {
     func didSwitch(isOn: Bool) {
+        UserDefaults.standard.setValue(isOn, forKey: "darkTheme")
         if isOn == true {
             view.overrideUserInterfaceStyle = .dark
         } else {

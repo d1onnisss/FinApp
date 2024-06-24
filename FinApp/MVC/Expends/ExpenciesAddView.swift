@@ -8,9 +8,14 @@
 import UIKit
 
 class ExpenciesAddView: UIViewController {
+    
+    //private var expencesTabBarController = ExpandsTabBarController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemOrange
+        //addChild(expencesTabBarController)
     }
+    
+    
 }

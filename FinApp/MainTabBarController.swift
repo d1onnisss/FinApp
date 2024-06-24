@@ -36,7 +36,7 @@ class MainTabBarController: UITabBarController {
     
     private func configureViewController() {
         let homeView = HomeView()
-        let expenciesAddView = ExpenciesAddView()
+        let expenciesAddView = ExpensesTabBarController()
         let profileView = ProfileView()
         let vc1 = UINavigationController(rootViewController: homeView)
         homeView.title = "Home"

@@ -44,6 +44,7 @@ class SettingsCell: UITableViewCell {
     private lazy var switchView: UISwitch = {
         let view = UISwitch()
         view.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
+        view.isOn = UserDefaults.standard.bool(forKey: "darkTheme")
         return view
     }()
     

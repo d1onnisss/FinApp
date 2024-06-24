@@ -14,6 +14,10 @@
 		180051F32C21B5D100FBCBB7 /* OnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180051F22C21B5D100FBCBB7 /* OnBoarding.swift */; };
 		180051F52C21B86400FBCBB7 /* OnBoardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180051F42C21B86400FBCBB7 /* OnBoardingCell.swift */; };
 		180051F92C21BFFA00FBCBB7 /* OnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180051F82C21BFFA00FBCBB7 /* OnBoard.swift */; };
+		1805764E2C24709B00F3315F /* ExpandsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805764D2C24709B00F3315F /* ExpandsTabBarController.swift */; };
+		180576502C24710B00F3315F /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805764F2C24710B00F3315F /* ExpensesView.swift */; };
+		180576522C24716A00F3315F /* IncomesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180576512C24716A00F3315F /* IncomesView.swift */; };
+		180576542C2478AF00F3315F /* AddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180576532C2478AF00F3315F /* AddCell.swift */; };
 		182A3FD12C1B283700330C16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A3FD02C1B283700330C16 /* AppDelegate.swift */; };
 		182A3FD32C1B283700330C16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A3FD22C1B283700330C16 /* SceneDelegate.swift */; };
 		182A3FD52C1B283700330C16 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A3FD42C1B283700330C16 /* MainTabBarController.swift */; };
@@ -37,6 +41,10 @@
 		180051F22C21B5D100FBCBB7 /* OnBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoarding.swift; sourceTree = "<group>"; };
 		180051F42C21B86400FBCBB7 /* OnBoardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCell.swift; sourceTree = "<group>"; };
 		180051F82C21BFFA00FBCBB7 /* OnBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoard.swift; sourceTree = "<group>"; };
+		1805764D2C24709B00F3315F /* ExpandsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandsTabBarController.swift; sourceTree = "<group>"; };
+		1805764F2C24710B00F3315F /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
+		180576512C24716A00F3315F /* IncomesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomesView.swift; sourceTree = "<group>"; };
+		180576532C2478AF00F3315F /* AddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCell.swift; sourceTree = "<group>"; };
 		182A3FCD2C1B283700330C16 /* FinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182A3FD02C1B283700330C16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		182A3FD22C1B283700330C16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				182A3FEA2C1B31BB00330C16 /* ExpenciesAddView.swift */,
+				1805764D2C24709B00F3315F /* ExpandsTabBarController.swift */,
+				1805764F2C24710B00F3315F /* ExpensesView.swift */,
+				180576512C24716A00F3315F /* IncomesView.swift */,
+				180576532C2478AF00F3315F /* AddCell.swift */,
 			);
 			path = Expends;
 			sourceTree = "<group>";
@@ -262,11 +274,15 @@
 				182A3FE72C1B2A3200330C16 /* MainTabBar.swift in Sources */,
 				180051EC2C20760800FBCBB7 /* SettingsController.swift in Sources */,
 				18BF65902C1F32A700523E45 /* CustomVerticalCVCell.swift in Sources */,
+				180576502C24710B00F3315F /* ExpensesView.swift in Sources */,
 				182A3FEB2C1B31BB00330C16 /* ExpenciesAddView.swift in Sources */,
 				182A3FD52C1B283700330C16 /* MainTabBarController.swift in Sources */,
 				18BF65992C1F431000523E45 /* Analytics.swift in Sources */,
 				182A3FD12C1B283700330C16 /* AppDelegate.swift in Sources */,
+				180576522C24716A00F3315F /* IncomesView.swift in Sources */,
+				180576542C2478AF00F3315F /* AddCell.swift in Sources */,
 				180051F92C21BFFA00FBCBB7 /* OnBoard.swift in Sources */,
+				1805764E2C24709B00F3315F /* ExpandsTabBarController.swift in Sources */,
 				182A3FE92C1B316300330C16 /* HomeView.swift in Sources */,
 				18BF658E2C1F327000523E45 /* CustomHorizontalCVCell.swift in Sources */,
 				182A3FED2C1B31F400330C16 /* ProfileView.swift in Sources */,

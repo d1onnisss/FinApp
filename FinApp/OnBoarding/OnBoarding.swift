@@ -48,6 +48,7 @@ class OnBoarding: UIViewController {
     }
     
     @objc private func skipBtnTapped() {
+        UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")
         let vc = MainTabBarController()
         navigationController?.pushViewController(vc, animated: true)
     }
