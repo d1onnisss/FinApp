@@ -14,7 +14,6 @@ protocol ExpendsTabBarControllerDelegate: AnyObject {
 class ExpensesTabBarController: UITabBarController {
     
     private var expensesView = ExpensesView()
-    
     private var incomesView = IncomesView()
     
     weak var expendsTabBarControllerDelegate: ExpendsTabBarControllerDelegate?
@@ -22,8 +21,7 @@ class ExpensesTabBarController: UITabBarController {
     private lazy var pageSegmentControl: UISegmentedControl = {
         let items = ["Расходы", "Доходы"]
         let view = UISegmentedControl(items: items)
-        view.setTitle(items[0], forSegmentAt: 0)
-        view.setTitle(items[1], forSegmentAt: 1)
+        view.selectedSegmentIndex = 0
         view.addTarget(self, action: #selector(segmentControlValueChanged), for: .valueChanged)
         view.backgroundColor = .lightGray
         view.selectedSegmentTintColor = .systemBlue
@@ -35,7 +33,7 @@ class ExpensesTabBarController: UITabBarController {
         view.setTitle("+", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.backgroundColor = .systemBlue
-        view.layer.cornerRadius = 60 / 2
+        view.layer.cornerRadius = 30
         view.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return view
     }()
@@ -43,7 +41,10 @@ class ExpensesTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         expensesView.expendsTabBarController = self
+        incomesView.expendsTabBarController = self
         viewControllers = [expensesView, incomesView]
+        selectedIndex = 0
+        expendsTabBarControllerDelegate = expensesView
         setupConstraints()
     }
     
@@ -55,8 +56,10 @@ class ExpensesTabBarController: UITabBarController {
     @objc func segmentControlValueChanged() {
         if pageSegmentControl.selectedSegmentIndex == 0 {
             selectedIndex = 0
+            expendsTabBarControllerDelegate = expensesView
         } else {
             selectedIndex = 1
+            expendsTabBarControllerDelegate = incomesView
         }
     }
     
@@ -71,15 +74,6 @@ class ExpensesTabBarController: UITabBarController {
         pageSegmentControl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
         pageSegmentControl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15).isActive = true
         pageSegmentControl.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
-       
-        
-//        view.addSubview(expensesView.view)
-//        expensesView.view.translatesAutoresizingMaskIntoConstraints = false
-//        expensesView.view.topAnchor.constraint(equalTo: pageSegmentControl.bottomAnchor).isActive = true
-//        expensesView.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        expensesView.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        expensesView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         view.addSubview(addButton)
         addButton.translatesAutoresizingMaskIntoConstraints = false

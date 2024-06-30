@@ -9,7 +9,7 @@ import UIKit
 
 class ExpensesView: UIViewController {
     
-    var dataList: [AddCellData] = []
+    var dataList: [AccountingModel] = []
     
     var expendsTabBarController: ExpensesTabBarController?
     
@@ -28,10 +28,13 @@ class ExpensesView: UIViewController {
         view.backgroundColor = .cyan
         expendsTabBarController?.expendsTabBarControllerDelegate = self
         setupConstraints()
+        
+       // expensesCollectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        dataList = CoreDataManager.shared.fetchExpenses()
         expensesCollectionView.reloadData()
     }
     
@@ -64,35 +67,68 @@ extension ExpensesView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 50)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let rootView = AccountingDetailsView()
+        let item = dataList[indexPath.row]
+        rootView.accountingModel = item
+        rootView.type = .details
+        rootView.navigationItem.title = "Расходы"
+        let accountingDetailsView = UINavigationController(rootViewController: rootView)
+        accountingDetailsView.modalPresentationStyle = .formSheet
+        present(accountingDetailsView, animated: true)
+    }
 }
 
 extension ExpensesView: ExpendsTabBarControllerDelegate {
     func didAddTap() {
-        let alert = UIAlertController(title: "Расходы", message: "Добавьте расходы", preferredStyle: .alert)
-        var amounTextField = UITextField()
-        var titleTextField = UITextField()
         
-        let acceptAction = UIAlertAction(title: "Да", style: .cancel) { action in
-            self.dataList.append(AddCellData(title: titleTextField.text ?? "", amount: Int(amounTextField.text ?? "0") ?? 0))
-            self.expensesCollectionView.reloadData()
-            print(self.dataList)
-        }
+        let rootView = AccountingDetailsView()
+        rootView.type = .add
+        rootView.navigationItem.title = "Расходы"
+        let accountingDetailsView = UINavigationController(rootViewController: rootView)
+        accountingDetailsView.modalPresentationStyle = .formSheet
+        present(accountingDetailsView, animated: true)
         
-        let declineAction = UIAlertAction(title: "Нет", style: .default) { action in
-            
-        }
-        
-        alert.addTextField { textField in
-            amounTextField = textField
-            
-        }
-        alert.addTextField { textField in
-            titleTextField = textField
-        }
-        
-        alert.addAction(acceptAction)
-        alert.addAction(declineAction)
-        present(alert, animated: true)
+//        let alert = UIAlertController(title: "Расходы", message: "Добавьте расходы", preferredStyle: .alert)
+//        var amounTextField = UITextField()
+//        amounTextField.placeholder = "Введите сумму"
+//        var titleTextField = UITextField()
+//        titleTextField.placeholder = "Введите название"
+//        let acceptAction = UIAlertAction(title: "Да", style: .cancel) { action in
+//           // self.dataList.append(AddCellData(title: titleTextField.text ?? "", amount: Int(amounTextField.text ?? "0") ?? 0))
+//           // self.expensesCollectionView.reloadData()
+//           // print(self.dataList)
+//            let id = UUID()
+//            let title = titleTextField.text ?? ""
+//            let amount = Double(amounTextField.text ?? "0")
+//            let date = Date()
+//            let category = "expenses"
+//            let image = "star"
+//            let color = "orange"
+//
+//            CoreDataManager.shared.addAccounting(id: id, title: title, amount: amount ?? 0, date: date, category: category, image: image, color: color)
+//
+//            self.dataList =  CoreDataManager.shared.fetchExpenses()
+//            self.expensesCollectionView.reloadData()
+//            print(self.dataList)
+//        }
+//
+//        let declineAction = UIAlertAction(title: "Нет", style: .default) { action in
+//
+//        }
+//
+//        alert.addTextField { textField in
+//            amounTextField = textField
+//
+//        }
+//        alert.addTextField { textField in
+//            titleTextField = textField
+//        }
+//
+//        alert.addAction(acceptAction)
+//        alert.addAction(declineAction)
+//        present(alert, animated: true)
         
         
         

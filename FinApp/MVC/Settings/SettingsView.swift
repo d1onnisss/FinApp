@@ -9,14 +9,18 @@ import Foundation
 import UIKit
 
 protocol SettingsViewProtocol: AnyObject {
-    
+    func clearAllData()
 }
 
 class SettingsView: UIViewController {
     
     private var controller: SettingsControllerToViewProtocol?
     
-    private var settings: [Settings] = [Settings(image: "globe", title: "Выбрать язык", type: .descritpion, description: "русский"), Settings(image: "moon", title: "Темная тема", type: .withSwitch), Settings(image: "trash", title: "Очистить данные", type: .standart)]
+    private var settings: [Settings] = [
+        Settings(image: "globe", title: "Выбрать язык", type: .descritpion, description: "русский"),
+        Settings(image: "moon", title: "Темная тема", type: .withSwitch),
+        Settings(image: "trash", title: "Очистить данные", type: .standart)
+    ]
     
     private lazy var settingsTableView: UITableView = {
         let view = UITableView()
@@ -35,11 +39,7 @@ class SettingsView: UIViewController {
         setupConstraints()
         
         let isDarkTheme = UserDefaults.standard.bool(forKey: "darkTheme")
-        if isDarkTheme == true {
-            view.overrideUserInterfaceStyle = .dark
-        } else {
-            view.overrideUserInterfaceStyle = .light
-        }
+        view.overrideUserInterfaceStyle = isDarkTheme ? .dark : .light
     }
     
     private func setupConstraints() {
@@ -48,12 +48,26 @@ class SettingsView: UIViewController {
         settingsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         settingsTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         settingsTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        settingsTableView.heightAnchor.constraint(equalToConstant: 156).isActive = true
+        settingsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
 
 extension SettingsView: SettingsViewProtocol {
-    
+    func clearAllData() {
+        let alert = UIAlertController(title: "Очистить данные", message: "Вы уверены, что хотите удалить все данные?", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Да", style: .destructive) { _ in
+            CoreDataManager.shared.deleteAllData()
+            // Optionally, notify the user or update the UI accordingly
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension SettingsView: UITableViewDataSource {
@@ -71,6 +85,13 @@ extension SettingsView: UITableViewDataSource {
 }
 
 extension SettingsView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let setting = settings[indexPath.row]
+        if setting.title == "Очистить данные" {
+            clearAllData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 52
     }
@@ -79,10 +100,6 @@ extension SettingsView: UITableViewDelegate {
 extension SettingsView: SettingsCellDelegate {
     func didSwitch(isOn: Bool) {
         UserDefaults.standard.setValue(isOn, forKey: "darkTheme")
-        if isOn == true {
-            view.overrideUserInterfaceStyle = .dark
-        } else {
-            view.overrideUserInterfaceStyle = .light
-        }
+        view.overrideUserInterfaceStyle = isOn ? .dark : .light
     }
 }
